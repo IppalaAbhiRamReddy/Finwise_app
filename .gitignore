@@ -1,0 +1,11 @@
+# Python
+*.pyc
+__pycache__/
+venvs/
+*.sqlite3
+
+# Django
+*.log
+*.pot
+*.pyc
+media/
