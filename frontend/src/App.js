@@ -5,6 +5,7 @@ import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
+// We don't need 'api' or 'useNavigate' here
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Login />} />
+
         <Route
           path="/dashboard"
           element={
@@ -20,7 +23,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/" element={<Login />} />
       </Routes>
     </Router>
   );
