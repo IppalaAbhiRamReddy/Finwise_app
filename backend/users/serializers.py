@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import User  # <-- Your custom user
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 # Your existing UserSerializer
 class UserSerializer(serializers.ModelSerializer):
@@ -25,3 +26,15 @@ class RegisterSerializer(serializers.ModelSerializer):
             income=validated_data.get('income', 0.00)
         )
         return user
+    
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['username'] = user.username
+        token['email'] = user.email
+        token['role'] = user.role  # <-- Add your new role
+
+        return token

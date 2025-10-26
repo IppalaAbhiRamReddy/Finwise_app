@@ -2,20 +2,17 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-# Import your views
-from users.views import UserViewSet, RegisterView
+# Import all your views
+from users.views import UserViewSet, RegisterView, CustomTokenObtainPairView
 from transactions.views import TransactionViewSet
 from budgets.views import BudgetViewSet
 from goals.views import GoalViewSet
 
-# Import the simplejwt views
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+# Import only the 'refresh' view from simplejwt
+from rest_framework_simplejwt.views import TokenRefreshView
 
 router = DefaultRouter()
-# Add the 'basename' argument to each viewset that uses 'get_queryset'
+# We add 'basename' because we are using 'get_queryset' in our views
 router.register(r'users', UserViewSet, basename='user')
 router.register(r'transactions', TransactionViewSet, basename='transaction')
 router.register(r'budgets', BudgetViewSet, basename='budget')
@@ -24,11 +21,11 @@ router.register(r'goals', GoalViewSet, basename='goal')
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    # Your API routes from Day 3
+    # All your /api/transactions/, /api/users/, etc.
     path('api/', include(router.urls)),
-
-    # Auth routes
+    
+    # Auth-specific routes
     path('api/register/', RegisterView.as_view(), name='auth_register'),
-    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
