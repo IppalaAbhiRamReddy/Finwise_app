@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'transactions',
     'budgets',
     'goals',
+    'analytics',
     # Third-party apps
     'rest_framework', 
     'rest_framework_simplejwt',
@@ -151,3 +152,14 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000', # (Just in case)
 ]
+
+# --- CACHE CONFIGURATION ---
+# This sets up a simple, in-memory cache for development.
+# For production, you'd swap this with Redis or Memcached.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'finwise-cache',
+    }
+}
+# --- END CACHE CONFIGURATION ---

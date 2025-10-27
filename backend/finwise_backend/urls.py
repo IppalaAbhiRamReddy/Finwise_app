@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from django.urls import path, include # Make sure 'include' is imported
 
 # Import all your views
 from users.views import UserViewSet, RegisterView, CustomTokenObtainPairView
@@ -28,4 +29,20 @@ urlpatterns = [
     path('api/register/', RegisterView.as_view(), name='auth_register'),
     path('api/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+]
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+
+    # All your /api/transactions/, /api/users/, etc.
+    path('api/', include(router.urls)),
+
+    # Auth-specific routes
+    path('api/register/', RegisterView.as_view(), name='auth_register'),
+    path('api/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    # --- ADD THIS LINE ---
+    # Plugs in all the URLs from the 'analytics' app
+    path('api/analytics/', include('analytics.urls')),
 ]

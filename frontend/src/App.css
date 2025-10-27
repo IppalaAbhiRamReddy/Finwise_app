@@ -1,38 +1,116 @@
-.App {
-  text-align: center;
-}
+/* --- Dashboard & Analytics CSS --- */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.dashboard-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  background-color: #f4f7f6;
+}
+
+.dashboard-nav {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dashboard-nav h2 {
+  margin: 0;
+  color: #333;
+}
+
+.dashboard-nav span {
+  margin-right: 1rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.nav-link {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.logout-button {
+  background: #d62728;
   color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.dashboard-content {
+  padding: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.card.income-card p { color: #2ca02c; }
+.card.expense-card p { color: #d62728; }
+.card.savings-card p { color: #0088FE; }
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+.chart-box {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.chart-container {
+  width: 100%;
+  height: 300px;
+}
+
+.chart-container h3 {
+  margin-top: 0;
+}
+
+.savings-tracker {
+  margin-top: 2rem;
+}
+
+.progress-bar-container {
+  background: #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 20px;
+}
+
+.progress-bar-filler {
+  background: #2ca02c;
+  height: 100%;
+  transition: width 0.5s ease-in-out;
 }
