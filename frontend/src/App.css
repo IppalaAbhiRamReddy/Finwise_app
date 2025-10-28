@@ -114,3 +114,34 @@
   height: 100%;
   transition: width 0.5s ease-in-out;
 }
+
+/* --- Prediction Card CSS --- */
+.prediction-card {
+  margin-top: 2rem; /* Add some space above */
+  padding-top: 1rem;
+  border-top: 1px solid #eee; /* Separator line */
+}
+
+.prediction-card h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.prediction-meta {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.prediction-loading,
+.prediction-error,
+.prediction-unavailable {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  text-align: center;
+  color: #555;
+}

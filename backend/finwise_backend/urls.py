@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include # Make sure 'include' is imported
+from django.urls import path, include
 
 # Import all your views
 from users.views import UserViewSet, RegisterView, CustomTokenObtainPairView
@@ -45,4 +46,7 @@ urlpatterns = [
     # --- ADD THIS LINE ---
     # Plugs in all the URLs from the 'analytics' app
     path('api/analytics/', include('analytics.urls')),
+
+    path('api/analytics/', include('analytics.urls')),
+    path('api/insights/', include('insights.urls')),
 ]

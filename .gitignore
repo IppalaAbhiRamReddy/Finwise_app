@@ -9,3 +9,9 @@ venvs/
 *.pot
 *.pyc
 media/
+
+# --- ADDED FOR ML MODELS ---
+# Ignore generated ML model files and the directory
+backend/insights_models/
+*.pkl
+# --- END ML MODELS ---
