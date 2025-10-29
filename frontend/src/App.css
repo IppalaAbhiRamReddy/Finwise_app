@@ -145,3 +145,94 @@
   text-align: center;
   color: #555;
 }
+
+/* --- CRUD Page Styles (Budgets & Goals) --- */
+.crud-page {
+  padding: 2rem;
+}
+
+.crud-form {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.crud-form h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.crud-form input,
+.crud-form label {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Include padding in width */
+}
+/* Adjust label layout */
+.crud-form label {
+    padding: 0;
+    border: none;
+}
+.crud-form label input {
+     margin-top: 0.25rem;
+}
+
+
+.form-actions {
+    margin-top: 1rem;
+}
+
+.crud-form button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  font-weight: 500;
+}
+
+.crud-form button[type="button"] {
+    background-color: #6c757d; /* Cancel button */
+}
+
+.crud-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.crud-table th,
+.crud-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.crud-table th {
+  background-color: #f8f9fa;
+}
+
+.actions-cell button {
+    margin-right: 5px;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    background-color: #fdd;
+    padding: 0.5rem;
+    border: 1px solid red;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
