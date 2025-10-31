@@ -1,65 +1,42 @@
-// src/components/PredictedExpense.js
-import React, { useEffect, useState } from 'react';
-import api from '../api/axios';
+import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { useDashboardData } from '../context/DataContext'; // Import the hook
 
-// Define colors for the bars
-const COLORS = {
-    'Predicted Income': '#2ca02c', // Green
-    'Predicted Expense': '#d62728', // Red
-    'Predicted Savings': '#0088FE'  // Blue
-};
+const COLORS = { 'Income': '#2ca02c', 'Expense': '#d62728', 'Savings': '#0088FE' };
 
 function PredictedExpense() {
-  const [prediction, setPrediction] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  // Get prediction data from the context
+  const { analytics, loading } = useDashboardData();
 
-  useEffect(() => {
-    const fetchPrediction = async () => {
-      setLoading(true);
-      setError('');
-      try {
-        const res = await api.get('insights/predict-monthly/');
-        setPrediction(res.data);
-      } catch (err) {
-        console.error("Prediction fetch error:", err.response?.data || err.message);
-        setError(err.response?.data?.detail || 'Could not fetch prediction.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPrediction();
-  }, []); // Fetch on component mount
+  const { data, pred } = useMemo(() => {
+    if (!analytics?.prediction) return { data: [], pred: null };
+    const predData = analytics.prediction;
+    const chartData = [
+      { name: 'Income', value: predData.predicted_income },
+      { name: 'Expense', value: predData.predicted_expense },
+      { name: 'Savings', value: predData.predicted_savings },
+    ];
+    return { data: chartData, pred: predData };
+  }, [analytics?.prediction]);
 
-  if (loading) return <div className="prediction-loading">Loading prediction...</div>;
-  if (error) return <div className="prediction-error">Error: {error}</div>;
-  if (!prediction) return <div className="prediction-unavailable">Prediction not available.</div>;
-
-  // Prepare data for the BarChart
-  const chartData = [
-    { name: 'Income', value: prediction.predicted_income },
-    { name: 'Expense', value: prediction.predicted_expense },
-    { name: 'Savings', value: prediction.predicted_savings },
-  ];
+  if (loading) return <div>Loading prediction...</div>;
+  if (!pred) return <div>Prediction not available</div>;
 
   return (
     <div className="prediction-card">
       <h4>Next Month Prediction</h4>
       <p className="prediction-meta">
-        Model: {prediction.model_type} 
-        {prediction.model_score !== null && ` (Score: ${prediction.model_score})`}
+        Model: {pred.model_type} 
+        {pred.model_score !== null && ` (Score: ${pred.model_score})`}
       </p>
       <ResponsiveContainer width="100%" height={200}>
-        <BarChart data={chartData} layout="vertical" margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          {/* Swapped XAxis and YAxis for vertical bars */}
-          <XAxis type="number" />
-          <YAxis type="category" dataKey="name" width={60} />
+        <BarChart data={data} layout="vertical" margin={{ left: 10 }}>
+          <XAxis type="number" fontSize={12} />
+          <YAxis type="category" dataKey="name" width={60} fontSize={12} />
           <Tooltip formatter={(value) => `₹${value.toFixed(2)}`} />
           <Bar dataKey="value" barSize={20}>
-             {/* Apply colors based on the data name */}
-             {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[`Predicted ${entry.name}`] || '#8884d8'} />
+             {data.map((entry) => (
+                <Cell key={`cell-${entry.name}`} fill={COLORS[entry.name] || '#8884d8'} />
              ))}
           </Bar>
         </BarChart>

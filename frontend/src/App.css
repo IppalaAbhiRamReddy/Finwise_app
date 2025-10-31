@@ -1,12 +1,14 @@
-/* --- Dashboard & Analytics CSS --- */
+/* --- Dashboard & Analytics CSS (From Day 8) --- */
 
+/* Main container for the entire logged-in view */
 .dashboard-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f4f7f6;
+  background-color: #f4f7f6; /* Light grey background */
 }
 
+/* Top navigation bar */
 .dashboard-nav {
   display: flex;
   justify-content: space-between;
@@ -27,6 +29,7 @@
   color: #555;
 }
 
+/* Links in the top nav */
 .nav-link {
   margin-right: 1rem;
   text-decoration: none;
@@ -42,12 +45,15 @@
   cursor: pointer;
 }
 
+/* Padding for the main content area */
 .dashboard-content {
   padding: 2rem;
 }
 
+/* --- ExpenseSummary.js Styles (Top 3 Cards) --- */
 .summary-cards {
   display: grid;
+  /* Responsive grid: 1 column on small, 3 on large */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
@@ -72,32 +78,12 @@
   font-weight: 600;
 }
 
+/* Color-code the card text */
 .card.income-card p { color: #2ca02c; }
 .card.expense-card p { color: #d62728; }
 .card.savings-card p { color: #0088FE; }
 
-.charts-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1.5rem;
-}
-
-.chart-box {
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.chart-container {
-  width: 100%;
-  height: 300px;
-}
-
-.chart-container h3 {
-  margin-top: 0;
-}
-
+/* --- SavingsTracker.js Styles --- */
 .savings-tracker {
   margin-top: 2rem;
 }
@@ -115,7 +101,7 @@
   transition: width 0.5s ease-in-out;
 }
 
-/* --- Prediction Card CSS --- */
+/* --- PredictedExpense.js Styles --- */
 .prediction-card {
   margin-top: 2rem; /* Add some space above */
   padding-top: 1rem;
@@ -128,12 +114,14 @@
   color: #333;
 }
 
+/* Small text below the prediction title (e.g., model type) */
 .prediction-meta {
   font-size: 0.85rem;
   color: #777;
   margin-bottom: 1rem;
 }
 
+/* Fallback styles for loading/error states */
 .prediction-loading,
 .prediction-error,
 .prediction-unavailable {
@@ -151,6 +139,7 @@
   padding: 2rem;
 }
 
+/* The white box containing the add/edit form */
 .crud-form {
   background-color: #fff;
   padding: 1.5rem;
@@ -174,7 +163,8 @@
   border-radius: 4px;
   box-sizing: border-box; /* Include padding in width */
 }
-/* Adjust label layout */
+
+/* Reset styles for <label> to allow input inside */
 .crud-form label {
     padding: 0;
     border: none;
@@ -182,7 +172,6 @@
 .crud-form label input {
      margin-top: 0.25rem;
 }
-
 
 .form-actions {
     margin-top: 1rem;
@@ -203,6 +192,7 @@
     background-color: #6c757d; /* Cancel button */
 }
 
+/* Table styles for Budgets & Goals lists */
 .crud-table {
   width: 100%;
   border-collapse: collapse;
@@ -228,6 +218,7 @@
     cursor: pointer;
 }
 
+/* Style for error messages (e.g., "Failed to load budgets") */
 .error-message {
     color: red;
     background-color: #fdd;
@@ -235,4 +226,108 @@
     border: 1px solid red;
     border-radius: 4px;
     margin-bottom: 1rem;
+}
+
+/* --- Day 11: New Dashboard & ChartCard Styles --- */
+
+/* Reusable Chart Card (wrapper for each chart) */
+.chart-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  min-height: 260px; /* Ensures all cards have same height */
+}
+
+.chart-card-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 0.5rem;
+}
+
+.chart-card-header h4 { 
+  margin:0; 
+  font-size:1.05rem; 
+  color:#333; 
+}
+.chart-card-header small { 
+  color:#666; 
+  font-weight: 500;
+}
+
+/* Main body of the chart card, holds the chart itself */
+.chart-card-body { 
+  flex: 1; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  width: 100%;
+  padding-top: 1rem;
+}
+
+/* Generic container for charts (used in Day 8) */
+.chart-container {
+  width: 100%;
+  height: 300px;
+}
+
+.chart-container h3 {
+  margin-top: 0;
+}
+
+
+/* New Dashboard Grid Layout (Day 11) */
+.charts-grid {
+  display: grid;
+  /* 2-column layout: main chart is 2/3, side charts are 1/3 */
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.main-chart { 
+  display:flex; 
+  flex-direction:column; 
+  gap:1rem; 
+}
+
+/* Side charts stack vertically */
+.side-charts { 
+  display:flex; 
+  flex-direction:column; 
+  gap:1rem; 
+}
+
+/* Loading Overlay for Day 11 DataContext */
+.dashboard-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  z-index: 1000;
+}
+
+/* Responsive Stack for mobile */
+@media (max-width: 900px) {
+  .charts-grid { 
+    grid-template-columns: 1fr; /* Stack columns */
+  }
+  .side-charts { order: 2; } /* Move side charts below */
+  .main-chart { order: 1; } /* Keep main chart on top */
+  
+  .dashboard-nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
