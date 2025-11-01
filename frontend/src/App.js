@@ -18,6 +18,7 @@ import RoleBasedRoute from './components/RoleBasedRoute'; // From Day 7
 
 // --- Import Context Providers ---
 import { DashboardDataProvider } from './context/DataContext'; // From Day 11
+import Transactions from './components/Transactions'; // From Day 12
 
 // --- Import CSS ---
 import './App.css';
@@ -79,6 +80,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/transactions"
+          element={
+            <ProtectedRoute>
+              <Transactions />
+            </ProtectedRoute>
+          }
+        />
+
 
         {/* === Admin-Only Protected Route === */}
         {/* Requires user to be logged in AND have the 'admin' role */}

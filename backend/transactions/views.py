@@ -1,17 +1,17 @@
-from rest_framework import viewsets, permissions # <-- Import permissions
+from rest_framework import viewsets, permissions
 from .models import Transaction
 from .serializers import TransactionSerializer
 
 class TransactionViewSet(viewsets.ModelViewSet):
     serializer_class = TransactionSerializer
-    permission_classes = [permissions.IsAuthenticated] # <-- 1. Add this line
+    permission_classes = [permissions.IsAuthenticated]
 
-    # --- 2. Add this function ---
-    # This ensures a user only sees their own transactions
     def get_queryset(self):
-        return self.request.user.transaction_set.all()
+        user = self.request.user
+        # Admins can see all transactions; normal users see only their own
+        if getattr(user, 'role', None) == 'admin':
+            return Transaction.objects.all().order_by('-date')
+        return Transaction.objects.filter(user=user).order_by('-date')
 
-    # --- 3. Add this function ---
-    # This automatically assigns the logged-in user to the new transaction
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

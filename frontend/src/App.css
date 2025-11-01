@@ -331,3 +331,65 @@
     gap: 0.5rem;
   }
 }
+
+/* --- Transaction Page Styles --- */
+.transaction-table .income-row td {
+  color: #2ca02c; /* Green for income */
+}
+
+.transaction-table .expense-row td {
+  color: #d62728; /* Red for expense */
+}
+
+/* Make the first cell (title) bold */
+.transaction-table tr td:nth-child(1) {
+  font-weight: 500;
+}
+
+/* If admin is logged in the second column might be username */
+.transaction-table tr td:nth-child(2) {
+  font-weight: 500;
+}
+
+/* Basic table styling */
+.crud-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.crud-table th, .crud-table td {
+  border: 1px solid #e6e6e6;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.actions-cell button {
+  margin-right: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+.actions-cell button:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.transaction-form input,
+.transaction-form select,
+.transaction-form label input {
+  margin-right: 8px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.form-actions {
+  margin-top: 10px;
+}
+.error-message {
+  color: #d62728;
+  font-weight: 600;
+}

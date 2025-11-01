@@ -29,6 +29,7 @@ export default function Dashboard() {
           <Link to="/profile" className="nav-link">Profile</Link>
           <Link to="/budgets" className="nav-link">Budgets</Link>
           <Link to="/goals" className="nav-link">Goals</Link>
+          <Link to="/transactions" className="nav-link">Transactions</Link>
           {userData?.role === 'admin' && (
             <Link to="/admin" className="nav-link">Admin</Link>
           )}
