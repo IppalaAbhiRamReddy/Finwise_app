@@ -8,7 +8,7 @@ import ExpenseSummary from './ExpenseSummary';
 import MonthlyBarChart from './MonthlyBarChart';
 import IncomeExpenseDonut from './IncomeExpenseDonut';
 import GoalProgressRadial from './GoalProgressRadial';
-import PredictedExpense from './PredictedExpense';
+import PredictSpending from './PredictSpending';
 
 export default function Dashboard() {
   const { loading, error } = useDashboardData(); // Get the global loading/error state
@@ -51,7 +51,7 @@ export default function Dashboard() {
               <div className="side-charts">
                 <IncomeExpenseDonut />
                 <GoalProgressRadial />
-                <PredictedExpense />
+                <PredictSpending />
               </div>
             </div>
           </>
