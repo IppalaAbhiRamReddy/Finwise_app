@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'budgets',
     'goals',
     'analytics',
+    'ai_engine',
     # Third-party apps
     'rest_framework', 
     'rest_framework_simplejwt',

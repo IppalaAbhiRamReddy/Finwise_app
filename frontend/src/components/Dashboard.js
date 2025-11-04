@@ -5,10 +5,10 @@ import { useDashboardData } from '../context/DataContext'; // Import the hook
 
 // Import your new "dumb" components
 import ExpenseSummary from './ExpenseSummary';
-import MonthlyBarChart from './MonthlyBarChart';
 import IncomeExpenseDonut from './IncomeExpenseDonut';
 import GoalProgressRadial from './GoalProgressRadial';
 import PredictSpending from './PredictSpending';
+import SpendingTrend from './SpendingTrend';
 
 export default function Dashboard() {
   const { loading, error } = useDashboardData(); // Get the global loading/error state
@@ -45,7 +45,7 @@ export default function Dashboard() {
 
             <div className="charts-grid">
               <div className="main-chart">
-                <MonthlyBarChart months={6} />
+                <SpendingTrend months={6} />
               </div>
 
               <div className="side-charts">

@@ -6,3 +6,6 @@ export const categorizeTransaction = (description) => {
 
 export const predictSpending = () =>
   api.get('ai/predict-spending/');
+
+export const getSpendingTrend = () =>
+  api.get('ai/spending-trend/');

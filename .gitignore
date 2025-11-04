@@ -13,5 +13,6 @@ media/
 # --- ADDED FOR ML MODELS ---
 # Ignore generated ML model files and the directory
 backend/insights_models/
+backend/ai_engine/ai_utils/data/
 *.pkl
 # --- END ML MODELS ---
